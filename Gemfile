@@ -32,11 +32,16 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'pg'
 gem 'carrierwave'
+gem 'slim-rails'
+gem 'simple_form'
+gem 'bootstrap-sass'
+gem 'bcrypt'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'rspec'
+  gem 'rails_layout'
 end
 
 group :development do

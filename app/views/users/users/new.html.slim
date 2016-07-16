@@ -1,0 +1,7 @@
+.form-signin
+  h1.form-signin-heading Registration
+  = simple_form_for @user, url: sign_up_path do |f|
+    = f.error_notification
+    = f.input :email, required: true, autofocus: true, input_html: { :class => 'form-control', placeholder: 'E-mail'}, label: false
+    = f.input :password, required: true, input_html: { :class => 'form-control', placeholder: 'Password'}, label: false
+    = f.button :submit, value: "Sign up", class: 'btn btn-lg btn-primary btn-block'

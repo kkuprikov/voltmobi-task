@@ -1,0 +1,31 @@
+doctype html
+html
+  head
+    title Voltmobi Task
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    = stylesheet_link_tag    "application", media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag "application", 'data-turbolinks-track' => true
+    = csrf_meta_tags
+
+  body
+    .navbar.navbar-inverse.navbar-fixed-top
+      .container
+        .navbar-header
+          .navbar-brand
+            = link_to 'Home', root_path
+        .collapse.navbar-collapse
+          ul.nav.navbar-nav
+            - if current_user
+              li = link_to 'Logout', logout_path
+            - else
+              li = link_to 'Sign up', sign_up_path
+              li = link_to 'Sign in', sign_in_path
+  main.main
+    .container
+      - flash.each do |name, msg|
+        - if msg.is_a?(String)
+          div class="alert alert-#{name.to_s == 'notice' ? 'success' : 'danger'}"
+            button.close[type="button" data-dismiss="alert" aria-hidden="true"] ×
+            = content_tag :div, msg, :id => "flash_#{name}"
+      = yield
+
