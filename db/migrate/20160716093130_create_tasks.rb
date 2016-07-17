@@ -4,7 +4,9 @@ class CreateTasks < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :description
       t.integer :user_id
-      t.string :state
+      t.string :workflow_state
+      t.timestamp :created_at
+      t.timestamp :updated_at
     end
   end
 end

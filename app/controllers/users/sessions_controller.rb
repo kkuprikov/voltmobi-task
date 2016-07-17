@@ -9,7 +9,7 @@ class Users::SessionsController < ApplicationController
       session[:id] = user.id
       redirect_to root_url, notice: "You have logged in"
     else
-      redirect_to sign_in_url, alert: "Wrong password"
+      redirect_to sign_in_url, alert: "Wrong credentials"
     end
   end
   
