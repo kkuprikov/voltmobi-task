@@ -8,8 +8,6 @@ default: &default
   adapter: postgresql
   pool: 5
   timeout: 5000
-  user:    macintosh
-  password: 1
 
 
 development:
@@ -21,6 +19,8 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+  database: travis_ci_test
+
 
 production:
   <<: *default
