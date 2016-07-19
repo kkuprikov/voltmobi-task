@@ -1,6 +1,7 @@
 class Users::TasksController < ApplicationController
 
-  before_action :authorize
+  before_action :authenticate
+  before_action :load_task, only: [:show, :edit, :update, :destroy]
 
   def new
     @task = Task.new
@@ -17,7 +18,6 @@ class Users::TasksController < ApplicationController
   end
 
   def show
-    @task = Task.find(params[:id])
   end
 
   def index
@@ -25,11 +25,9 @@ class Users::TasksController < ApplicationController
   end
 
   def edit
-    @task = Task.find(params[:id])
   end
 
   def update
-    @task = Task.find(params[:id])
     @task.attributes = task_params
     if @task.valid?
       @task.save(task_params)
@@ -41,12 +39,15 @@ class Users::TasksController < ApplicationController
   end
 
   def destroy
-    @task = Task.find(params[:id])
     @task.destroy
     redirect_to action: :index, status: 303
   end
 
   private
+
+  def load_task
+    @task = Task.where(id: params[:id]).first
+  end
 
   def task_params
     params.require(:task).permit(:name, :description, :document).merge(user: current_user)

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   
 
   resources :users, :only => [:index]
+  resources :tasks, :only => [:index]
   scope module: 'users' do
     resources 'users', :only => [:show, :edit, :update] do
       resources :tasks
@@ -16,5 +17,5 @@ Rails.application.routes.draw do
   end
   
 
-  root 'users/tasks#index'
+  root 'tasks#index'
 end

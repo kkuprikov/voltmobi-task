@@ -1,0 +1,13 @@
+table.table-bordered.table-hover.table-index
+  thead
+    tr
+      th ID
+      th Name
+      th Description
+      /- if current_user.admin
+      /  th User
+      th State
+      th Actions
+  tbody
+    - @tasks.each do |task|
+      = render 'shared/task', task: task
