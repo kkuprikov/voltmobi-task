@@ -41,10 +41,11 @@ gem 'workflow'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'rspec'
+  gem 'rspec-rails', '~> 3.4'
   gem 'rails_layout'
-  gem 'factory_girl'
+  gem 'factory_girl_rails', '~> 4.0', require: false
   gem 'simplecov'
+  gem 'faker'
 end
 
 group :development do

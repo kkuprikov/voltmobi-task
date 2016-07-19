@@ -4,11 +4,11 @@ class ApplicationController < ActionController::Base
   private
   
   def current_user
-    @current_user ||= User.find(session[:id]) if session[:id]
+    @current_user ||= User.where(id: session[:id]).first if session[:id]
   end
   helper_method :current_user
 
-  def authorize
-    redirect_to sign_in_url, alert: "Not authorized" if current_user.nil?
+  def authenticate
+    redirect_to sign_in_url, alert: "Not authenticated" if current_user.nil?
   end
 end

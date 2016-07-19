@@ -1,0 +1,15 @@
+tr
+  td.col-md-1 = task.id
+  - if current_user
+    td.col-md-3 = link_to task.name, user_task_path(user_id: current_user.id, id: task.id)
+  - else
+    td.col-md-3 = task.name
+  td.col-md-4 = task.description
+  / td = task.id
+  td.col-md-1 = task.current_state
+  - if current_user
+    td.col-md-3
+      .btn-group
+        / = button_to task.current_state.events.keys.first.to_s.camelize + ' task', 
+        = button_to 'Edit task', edit_user_task_path(current_user.id, task.id), class: 'btn-xs btn-primary', method: :get
+        = button_to 'Delete task', user_task_path(current_user.id, task.id), class: 'btn-xs btn-danger', method: :delete
