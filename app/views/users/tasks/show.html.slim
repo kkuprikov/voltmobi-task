@@ -1,0 +1,9 @@
+h1 = 'Task ' + @task.id.to_s
+ul
+  li= @task.name
+  li= @task.description
+  - if @task.document
+    - if @task.image_attached?
+      li= image_tag @task.document.url, class: 'image-size'
+    - else
+      li= link_to @task.document.file.filename, @task.document.url 

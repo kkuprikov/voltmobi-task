@@ -17,11 +17,33 @@ class Users::TasksController < ApplicationController
   end
 
   def show
-
+    @task = Task.find(params[:id])
   end
 
   def index
     @tasks = current_user.tasks
+  end
+
+  def edit
+    @task = Task.find(params[:id])
+  end
+
+  def update
+    @task = Task.find(params[:id])
+    @task.attributes = task_params
+    if @task.valid?
+      @task.save(task_params)
+      redirect_to user_task_path(user_id: current_user.id, id: @task.id), notice: 'Task updated'
+    else
+      flash[:warning] = 'Please, fix the errors below and try again'
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+    redirect_to action: :index, status: 303
   end
 
   private

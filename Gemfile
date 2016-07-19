@@ -31,17 +31,20 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'pg'
-gem 'carrierwave'
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'slim-rails'
 gem 'simple_form'
 gem 'bootstrap-sass'
 gem 'bcrypt'
+gem 'workflow'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'rspec'
   gem 'rails_layout'
+  gem 'factory_girl'
+  gem 'simplecov'
 end
 
 group :development do

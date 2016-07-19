@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   
 
   resources :users, :only => [:index]
-  scope :module => 'users' do
+  scope module: 'users' do
     resources 'users', :only => [:show, :edit, :update] do
       resources :tasks
     end

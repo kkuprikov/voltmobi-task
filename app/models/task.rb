@@ -7,13 +7,17 @@ class Task < ApplicationRecord
   include Workflow
   workflow do
     state :new do
-      event :next,   transitions_to: :started
+      event :start,   transitions_to: :started
     end
 
     state :started do
-      event :next,   transitions_to: :finished
+      event :finish,   transitions_to: :finished
     end
 
     state :finished 
+  end
+
+  def image_attached?
+    document.content_type.start_with? 'image' if document
   end
 end
