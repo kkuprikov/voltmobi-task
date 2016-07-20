@@ -20,6 +20,12 @@ FactoryGirl.define do
     name           Faker::Lorem.word
     description    Faker::Lorem.paragraph(2)
     user
+  end 
+
+  factory :invalid_task, class: Task do
+    name           ''
+    description    ''
+    user
   end    
 
 end

@@ -38,7 +38,7 @@ class Users::TasksController < ApplicationController
   end
 
   def destroy
-    @task.destroy
+    @task.destroy if @task.user == current_user
     redirect_to action: :index, status: 303
   end
 
