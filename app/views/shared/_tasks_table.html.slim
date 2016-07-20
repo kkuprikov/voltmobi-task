@@ -1,13 +1,17 @@
-table.table-bordered.table-hover.table-index
-  thead
-    tr
-      th ID
-      th Name
-      th Description
-      /- if current_user.admin
-      /  th User
-      th State
-      th Actions
-  tbody
-    - @tasks.each do |task|
-      = render 'shared/task', task: task
+- if @tasks.empty?
+  h2 There are no tasks created yet.
+- else
+    table.table-bordered.table-hover.table-index
+      thead
+        tr
+          th ID
+          th Name
+          th Description
+          th State
+          - if current_user.role == 'admin'
+            th User
+          - if current_user
+            th Actions
+      tbody
+        - @tasks.each do |task|
+          = render 'shared/task', task: task

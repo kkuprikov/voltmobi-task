@@ -1,0 +1,5 @@
+= f.button :submit, 'Save', class: 'btn btn-primary'
+- if (action_name != 'new') && (@task.current_state.events != {})
+  .well
+    - @task.current_state.events.keys.each do |transition|
+      = f.button :submit, transition.to_s.camelize + ' task', name: "event[#{transition.to_s}!]", class: 'btn btn-success'

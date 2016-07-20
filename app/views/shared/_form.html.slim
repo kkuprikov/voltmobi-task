@@ -1,0 +1,11 @@
+.form-task
+  - if current_user.role == 'admin'
+    = simple_form_for @task, html: {multipart: true} do |f|
+      = render 'shared/form_fields', f: f
+      = render 'shared/admin_fields', f: f
+      = render 'shared/buttons', f: f
+  - else
+    = simple_form_for [:user, @task], html: {multipart: true} do |f|
+      = render 'shared/form_fields', f: f
+      = render 'shared/buttons', f: f
+

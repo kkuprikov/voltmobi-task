@@ -8,10 +8,10 @@ Rails.application.routes.draw do
   post 'sign_up', to: 'users/users#create'
   
 
-  resources :users, :only => [:index]
-  resources :tasks, :only => [:index]
+  resources :users, only: [:index]
+  resources :tasks
   scope module: 'users' do
-    resources 'users', :only => [:show, :edit, :update] do
+    resources 'users', only: [:show, :edit, :update] do
       resources :tasks
     end
   end

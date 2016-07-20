@@ -17,15 +17,13 @@ class Users::TasksController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
   def index
     @tasks = (current_user.role == 'admin') ? Task.all : current_user.tasks
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     @task.attributes = task_params

@@ -3,11 +3,12 @@ ul
   li= @task.workflow_state.to_s.camelize
   li= @task.name
   li= @task.description
+  li= @task.user.email
   - if @task.document
     - if @task.image_attached?
       li= image_tag @task.document.url, class: 'image-size'
     - else
       li= link_to @task.document.file.filename, @task.document.url
 .btn-group-vertical
-  = button_to 'Edit task', edit_user_task_path(current_user.id, @task.id), class: 'btn-xs btn-primary', method: :get
-  = button_to 'Back to tasklist', user_tasks_path(current_user), class: 'btn-xs btn-success', method: :get
+  = button_to 'Edit task', edit_task_path(@task.id), class: 'btn-xs btn-primary', method: :get
+  = button_to 'Back to tasklist', root_path, class: 'btn-xs btn-success', method: :get

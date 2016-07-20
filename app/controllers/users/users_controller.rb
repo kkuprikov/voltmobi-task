@@ -7,7 +7,11 @@ class Users::UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:id] = @user.id
-      redirect_to root_url, notice: "You have successfully signed up"
+      if @user.role == 'admin'
+        redirect_to root_url, notice: "You have successfully signed up"
+      else
+        redirect_to user_tasks_url(@user), notice: "You have successfully signed up"
+      end
     else
       render "new"
     end
