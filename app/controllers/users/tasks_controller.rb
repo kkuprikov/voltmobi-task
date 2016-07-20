@@ -21,7 +21,7 @@ class Users::TasksController < ApplicationController
   end
 
   def index
-    @tasks = current_user.tasks
+    @tasks = (current_user.role == 'admin') ? Task.all : current_user.tasks
   end
 
   def edit
@@ -31,6 +31,7 @@ class Users::TasksController < ApplicationController
     @task.attributes = task_params
     if @task.valid?
       @task.save(task_params)
+      @task.send(params[:event].keys.first) if params[:event]
       redirect_to user_task_path(user_id: current_user.id, id: @task.id), notice: 'Task updated'
     else
       flash[:warning] = 'Please, fix the errors below and try again'
