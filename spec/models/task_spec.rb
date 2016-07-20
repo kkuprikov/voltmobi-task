@@ -18,7 +18,7 @@ RSpec.describe Task, type: :model do
   end
 
   it "checks image_attached? false" do
-    task
-    expect(task.image_attached?).to eq(false)
+    task_no_doc
+    expect(task_no_doc.image_attached?).to eq(false)
   end
 end

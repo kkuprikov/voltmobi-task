@@ -18,6 +18,10 @@ class Task < ApplicationRecord
   end
 
   def image_attached?
-    document.content_type.start_with? 'image' if document
+    if document.content_type
+      return document.content_type.start_with? 'image'
+    else
+      return false
+    end
   end
 end

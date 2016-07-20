@@ -14,6 +14,12 @@ FactoryGirl.define do
     description    Faker::Lorem.paragraph(2)
     user
     document       { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'linux-penguin-small.png')) }
+  end
+
+  factory :task_no_doc, class: Task do
+    name           Faker::Lorem.word
+    description    Faker::Lorem.paragraph(2)
+    user
   end    
 
 end
