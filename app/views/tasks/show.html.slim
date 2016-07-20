@@ -4,7 +4,7 @@ ul
   li= @task.name
   li= @task.description
   li= @task.user.email
-  - if @task.document
+  - if @task.document.content_type
     - if @task.image_attached?
       li= image_tag @task.document.url, class: 'image-size'
     - else
