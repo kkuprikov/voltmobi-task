@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Task, type: :model do
   let(:task)             { create(:task) }
   let(:task_with_image)  { create(:task_with_image) }
+  let(:task_no_doc)      { create(:task_no_doc) }
 
   it "has a valid factory" do
     expect(build(:task)).to be_valid
