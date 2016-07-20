@@ -34,6 +34,7 @@ gem 'simple_form'
 gem 'bootstrap-sass'
 gem 'bcrypt'
 gem 'workflow'
+gem 'faker'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -42,7 +43,6 @@ group :development, :test do
   gem 'rails_layout'
   gem 'factory_girl_rails', '~> 4.0', require: false
   gem 'simplecov'
-  gem 'faker'
   gem 'rails-controller-testing'
 end
 
