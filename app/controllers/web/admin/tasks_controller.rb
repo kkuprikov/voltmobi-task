@@ -1,7 +1,11 @@
-class Users::TasksController < ApplicationController
+class Web::Admin::TasksController < ApplicationController
 
   before_action :authenticate
   before_action :load_task, only: [:show, :edit, :update, :destroy]
+
+  def index
+    @tasks = Task.all
+  end
 
   def new
     @task = Task.new
@@ -10,7 +14,7 @@ class Users::TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     if @task.save
-      redirect_to user_task_path(user_id: current_user.id, id: @task.id), notice: 'Task created!'
+      redirect_to task_path(@task), notice: 'Task created!'
     else
       flash[:warning] = 'Please, fix the errors below and try again'
       render 'new'
@@ -19,10 +23,6 @@ class Users::TasksController < ApplicationController
 
   def show; end
 
-  def index
-    @tasks = (current_user.role == 'admin') ? Task.all : current_user.tasks
-  end
-
   def edit; end
 
   def update
@@ -30,7 +30,7 @@ class Users::TasksController < ApplicationController
     if @task.valid?
       @task.save(task_params)
       @task.send(params[:event].keys.first) if params[:event]
-      redirect_to user_task_path(user_id: current_user.id, id: @task.id), notice: 'Task updated'
+      redirect_to task_path(@task), notice: 'Task updated'
     else
       flash[:warning] = 'Please, fix the errors below and try again'
       render 'edit'
@@ -38,7 +38,7 @@ class Users::TasksController < ApplicationController
   end
 
   def destroy
-    @task.destroy if @task.user == current_user
+    @task.destroy
     redirect_to action: :index, status: 303
   end
 
@@ -49,6 +49,7 @@ class Users::TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:name, :description, :document).merge(user: current_user)
+    params.require(:task).permit(:name, :description, :document, :user_id)
   end
+
 end

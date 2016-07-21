@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Users::TasksController, type: :controller do
+RSpec.describe Web::Users::TasksController, type: :controller do
 
   let(:user)  { create(:user) }
   let(:user2) { create(:user) }
