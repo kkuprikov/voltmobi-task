@@ -20,5 +20,5 @@ Rails.application.routes.draw do
     end
   end  
 
-  root 'tasks#index'
+  root 'web/admin/tasks#index'
 end
